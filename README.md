@@ -61,9 +61,22 @@ The report is available from the author's original PRP research files. The docum
 
 This was collaborative undergraduate research at the School of Naval Architecture, Ocean and Civil Engineering, Shanghai Jiao Tong University. Individual implementation ownership cannot be independently determined from the report alone.
 
+## Run the independent Python demo
+
+The repository now includes an installable **educational 2D finite-element model** in `src/hatchopt/`, a simple multi-island evolutionary optimizer, a CLI and smoke tests. These files are new, independently authored demonstration code—not recovered Patran/Nastran/Isight project files.
+
+```bash
+python -m pip install -e ".[dev]"
+python -m pytest -q
+hatchopt --a 1200 --b 850 --out outputs
+hatchopt --optimize --generations 12 --out outputs
+```
+
+Outputs: `outputs/stress.png`, `outputs/summary.json` and, when optimizing, `outputs/optimization.json`. The model uses a 2D quarter-domain with an elliptical cutout, plane-stress linear triangles, prescribed displacement and a 2D area proxy for mass. Its numerical values **must not** be compared as a validated reproduction of the original report's 534 → 424 MPa result. See [REPRODUCTION.md](REPRODUCTION.md).
+
 ## Reproducibility and limitations
 
-**Documentation-based research archive.** The supplied source is a **research paper, not the original executable PCL scripts, Nastran model, Isight workflow files, mesh or raw simulation results**. This repository therefore does not claim a push-button reproducible solver implementation. The numerical results above are as reported, not recomputed.
+**Research archive with an independent runnable educational demo.** The supplied source is a **research paper, not the original executable PCL scripts, Nastran model, Isight workflow files, mesh or raw simulation results**. The Python example is a different simplified model and does not reproduce the commercial solver implementation. The numerical results above are as reported, not recomputed.
 
 Original title: **集装箱船舱口角隅结构拓扑优化** · Project number **T010PRP42006** · PRP (42nd cohort), 2022–2023.
 
