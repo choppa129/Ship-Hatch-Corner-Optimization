@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="Interactive hatch-corner shape optimization exhibit showing elliptical geometry and original FEA study results.">
+<title>Hatch-Corner Optimization | Interactive Engineering Lab</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,sans-serif;background:#fff;color:#161616}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0}a{color:inherit}header,main,footer{max-width:1260px;padding:26px clamp(18px,4vw,56px);margin:auto}header{display:flex;justify-content:space-between;gap:20px;align-items:center;border-bottom:1px solid #ddd}header strong{font-size:18px}header a{font-size:15px}h1{font-size:clamp(43px,6.4vw,86px);letter-spacing:-.065em;line-height:1.07;margin:24px 0}h2{font-size:clamp(28px,3vw,44px);letter-spacing:-.04em;margin:0 0 18px}p{font-size:18px;line-height:1.7;color:#444}main>p{max-width:880px}.eyebrow{font:600 14px ui-monospace,monospace;letter-spacing:.08em;color:#666}.hero{margin:30px 0 50px}.hero p{max-width:850px}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:30px 0 55px}.metric{border:1px solid #ddd;padding:24px;background:#fff}.metric strong{font-size:clamp(29px,3.7vw,54px);letter-spacing:-.04em;display:block}.metric span{font-size:15px;color:#555}.lab{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}.visual{border:1px solid #ddd;background:#fff;padding:18px}.visual svg{width:100%;height:auto;display:block;background:#fbfbfb}.visual figcaption{font-size:15px;color:#555;margin-top:15px}.controls{border:1px solid #ddd;padding:25px}.controls label{display:block;font-size:17px;font-weight:650;margin:22px 0 8px}.controls input[type=range]{width:100%;accent-color:#161616}.controls output{float:right;font-weight:650;font-variant-numeric:tabular-nums}.controls button,.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid #222;background:#111;color:#fff;padding:13px 17px;text-decoration:none;font-size:16px;font-weight:650;cursor:pointer}.controls button{margin-top:22px;width:100%}.controls button.secondary{background:white;color:#111;margin-top:9px}.explain{font-size:14px;line-height:1.65;color:#666}.report{border-top:1px solid #ddd;padding-top:65px;margin-top:75px}.figures{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.figures figure{margin:0;padding:16px;border:1px solid #ddd}.figures img{width:100%;height:280px;object-fit:contain}.figures figcaption{font-size:16px;line-height:1.55;color:#444;padding-top:14px}.comparison{margin-top:36px}.comparison .figures img{height:320px}.note{margin-top:32px;border-left:3px solid #222;background:#fafafa;padding:18px 25px;font-size:16px;line-height:1.7}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin:25px 0}.buttons .btn.alt{background:#fff;color:#111}footer{border-top:1px solid #ddd;font-size:15px;color:#555;margin-top:40px}.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:15px;color:#444}.swatch{display:inline-block;width:13px;height:13px;border-radius:3px;margin-right:6px}.geometry-title{font-size:19px;margin:0 0 22px}.label{font:15px ui-monospace,monospace;fill:#222}.dashed{stroke-dasharray:8 6}.history{border:1px solid #ddd;margin-top:22px;padding:22px}.history strong{font-size:21px}.history p{font-size:16px;margin:8px 0}.source{font-size:15px;color:#555}@media(max-width:840px){.lab{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.figures{grid-template-columns:1fr}.figures img,.comparison .figures img{height:auto;max-height:400px}}@media(max-width:530px){.metrics{grid-template-columns:1fr}header{flex-direction:column;align-items:start}.visual{padding:8px}.controls{padding:20px}}
+</style>
+</head>
+<body>
+<header><strong>SHIP STRUCTURES / INTERACTIVE LAB</strong><a href="https://github.com/choppa129/Ship-Hatch-Corner-Optimization">View source on GitHub ↗</a></header>
+<main>
+<section class="hero"><span class="eyebrow">SJTU UNDERGRADUATE RESEARCH · 2022–2023</span><h1>Optimize the<br>hatch corner.</h1><p>Explore how the two elliptical shape parameters change a ship-deck hatch corner. Compare the interactive geometry with original finite-element stress plots from an SJTU research project using Patran/Nastran and a multi-island genetic algorithm.</p></section>
+<div class="metrics"><div class="metric"><strong>534 MPa</strong><span>Reported initial maximum stress</span></div><div class="metric"><strong>424 MPa</strong><span>Reported optimized maximum stress</span></div><div class="metric"><strong>−20.6%</strong><span>Reported reduction in peak stress</span></div></div>
+<section aria-labelledby="explore"><h2 id="explore">Parametric geometry playground</h2>
+<div class="lab">
+<figure class="visual"><h3 class="geometry-title">Elliptical hatch-corner profile</h3>
+<svg viewBox="0 0 720 520" id="drawing" role="img" aria-label="Interactive schematic of elliptical hatch corner geometry with a and b parameters">
+<defs><pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" fill="none" stroke="#e8e8e8" stroke-width="1"/></pattern></defs>
+<rect x="0" y="0" width="720" height="520" fill="url(#grid)"/>
+<path d="M95 65 H625 V465 H95 Z" fill="#f0f0f0" stroke="#333" stroke-width="2"/>
+<path id="hatch" fill="#fff" stroke="#17699e" stroke-width="4"/>
+<line id="axisA" x1="0" y1="0" x2="0" y2="0" stroke="#d45b32" stroke-width="2" stroke-dasharray="6 5"/>
+<line id="axisB" x1="0" y1="0" x2="0" y2="0" stroke="#117f68" stroke-width="2" stroke-dasharray="6 5"/>
+<text id="labelA" class="label" x="0" y="0">a</text><text id="labelB" class="label" x="0" y="0">b</text>
+<text class="label" x="105" y="490">DECK PLATE · CONCEPTUAL 2D SECTION</text>
+<text class="label" x="402" y="40">HATCH OPENING</text></svg>
+<div class="legend"><span><i class="swatch" style="background:#17699e"></i>Elliptical cutout</span><span><i class="swatch" style="background:#d45b32"></i>a dimension</span><span><i class="swatch" style="background:#117f68"></i>b dimension</span></div>
+<figcaption>Schematic only. The displayed geometry is not the original FE mesh, a stress-field calculation, or a ship-classification design approval.</figcaption></figure>
+<aside class="controls"><span class="eyebrow">DESIGN VARIABLES</span><label for="a">Ellipse parameter a <output id="av">1386 mm</output></label><input id="a" type="range" min="1000" max="1400" step="10" value="1386">
+<label for="b">Ellipse parameter b <output id="bv">1354 mm</output></label><input id="b" type="range" min="500" max="2000" step="10" value="1354">
+<button id="optimized">Show reported optimum</button><button class="secondary" id="initial">Show reference geometry</button>
+<p class="explain">The optimized values (a = 1386 mm, b = 1354 mm) are documented in the PRP report. The reference geometry button uses illustrative a = 1200 mm, b = 850 mm to visualize changes; it is <strong>not</strong> the initial reported geometry. Moving sliders does not recalculate von Mises stress.</p></aside></div>
+<div class="history"><strong id="status">Reported optimized geometry</strong><p id="statusText">a = 1386 mm · b = 1354 mm</p></div></section>
+<section class="report" id="results"><span class="eyebrow">ORIGINAL RESEARCH FIGURES</span><h2>Finite-element study</h2><p>These images are taken from the original project assets and show the full structural model, local mesh, and reported comparison of von Mises stress before and after optimization.</p>
+<div class="figures"><figure><img src="https://raw.githubusercontent.com/choppa129/choppa129.github.io/main/assets/FEA%E5%8E%9F%E5%A7%8B%E5%AE%8C%E6%95%B4%E7%BB%93%E6%9E%84%E5%9B%BE.png" alt="Original full ship deck finite-element structural model" loading="lazy"><figcaption>01 · Original finite-element model</figcaption></figure><figure><img src="https://raw.githubusercontent.com/choppa129/choppa129.github.io/main/assets/fea%E5%B1%80%E9%83%A8%E7%BB%93%E6%9E%84.png" alt="Original local hatch-corner finite-element mesh with geometry labels" loading="lazy"><figcaption>02 · Local hatch-corner submodel</figcaption></figure></div>
+<div class="comparison"><h2>Before and after optimization</h2><div class="figures"><figure><img src="https://raw.githubusercontent.com/choppa129/choppa129.github.io/main/assets/%E4%BC%98%E5%8C%96%E5%89%8D.png" alt="Original von Mises stress contours before optimization" loading="lazy"><figcaption>Before · Reported peak von Mises stress: 534 MPa</figcaption></figure><figure><img src="https://raw.githubusercontent.com/choppa129/choppa129.github.io/main/assets/%E4%BC%98%E5%8C%96%E5%90%8E.png" alt="Original von Mises stress contours after optimization" loading="lazy"><figcaption>After · Reported peak von Mises stress: 424 MPa</figcaption></figure></div></div>
+<div class="note"><strong>About the model and results:</strong> This browser experience manipulates only a simplified 2D elliptical outline. The 20.6% stress reduction is from the original Patran/Nastran and Isight research case; the webpage does not recompute or predict stress from user-selected dimensions. The independent Python educational model in this repository is also separate from the original commercial-solver study.</div>
+<div class="buttons"><a class="btn" href="https://github.com/choppa129/Ship-Hatch-Corner-Optimization">Explore research & Python code ↗</a><a class="btn alt" href="https://choppa129.github.io/projects/hatch-corner-optimization/">View portfolio case study ↗</a></div>
+</section></main><footer>Shanghai Jiao Tong University · PRP 42nd cohort · Xue Jiang · Yixuan He · Advisor Jinju Cui</footer>
+<script>
+'use strict';
+const a=document.getElementById('a'),b=document.getElementById('b');
+const $=id=>document.getElementById(id);
+function setLine(id,x1,y1,x2,y2){const x=$(id);x.setAttribute('x1',x1);x.setAttribute('y1',y1);x.setAttribute('x2',x2);x.setAttribute('y2',y2);}
+function render(){
+ const A=Number(a.value),B=Number(b.value);
+ $('av').textContent=A+' mm';$('bv').textContent=B+' mm';
+ const cx=390,cy=320,rx=A/1400*215,ry=B/2000*220;
+ // Upper-left quarter elliptical edge from left tangency to top tangency.
+ const pts=[];
+ for(let i=0;i<=80;i++){let t=Math.PI+(Math.PI/2)*i/80;pts.push([cx+rx*Math.cos(t),cy+ry*Math.sin(t)]);}
+ let d='M '+(cx-rx)+' '+65+' L '+625+' 65 L 625 465 L 95 465 L 95 '+cy+' L '+(cx-rx)+' '+cy;
+ // Draw blue boundary with an inset quarter ellipse, on top of the deck.
+ $('hatch').setAttribute('d','M '+cx+' '+(cy-ry)+' L 625 '+(cy-ry)+' L 625 465 L 95 465 L 95 '+cy+' L '+(cx-rx)+' '+cy+' Q '+(cx-rx)+' '+(cy-ry)+' '+cx+' '+(cy-ry)+' Z');
+ setLine('axisA',cx-rx,cy+22,cx,cy+22);setLine('axisB',cx+16,cy-ry,cx+16,cy);
+ $('labelA').setAttribute('x',cx-rx/2-25);$('labelA').setAttribute('y',cy+43);
+ $('labelB').setAttribute('x',cx+26);$('labelB').setAttribute('y',cy-ry/2);
+ $('status').textContent=A===1386&&B===1354?'Reported optimized geometry':'Interactive geometry preview';
+ $('statusText').textContent='a = '+A+' mm · b = '+B+' mm · no FEA recalculation';
+}
+a.addEventListener('input',render);b.addEventListener('input',render);
+$('optimized').onclick=()=>{a.value=1386;b.value=1354;render();};
+$('initial').onclick=()=>{a.value=1200;b.value=850;render();};
+render();
+</script></body></html>
