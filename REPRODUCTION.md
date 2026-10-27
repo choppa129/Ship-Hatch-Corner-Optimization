@@ -1,9 +1,20 @@
-# Open-source reproduction code
+# Independent Python FEM reproduction companion
 
-A standalone Python implementation of a **2D plane-stress finite-element model** with a quarter-elliptical cutout and an illustrative multi-island genetic optimizer has been prepared separately as a source ZIP.
+This repository now contains the runnable Python source in `src/hatchopt/`, an installable `pyproject.toml`, and smoke tests in `tests/`.
 
-The code includes mesh generation, constant-strain triangle stiffness assembly, sparse solution, von Mises stress visualization, a multi-island evolutionary search, CLI and tests.
+## Quick start
 
-**Important:** This is an independent educational model. It is **not** the original Patran/Nastran/Isight implementation, does not reproduce the original vessel submodel or boundary conditions, and must not be represented as a reproduction of the paper's 534 to 424 MPa results. The example's output depends on its assumed geometry, far-field displacement and material parameters.
+```bash
+python -m pip install -e ".[dev]"
+python -m pytest -q
+hatchopt --a 1200 --b 850 --out outputs
+hatchopt --optimize --generations 12 --out outputs
+```
 
-To integrate, add the source files from the generated archive to this repository and follow its README. Original commercial solver inputs remain unavailable.
+The example builds a **2D quarter-annular plane-stress mesh with an elliptical cutout**, solves a prescribed-displacement FE problem using constant-strain triangles, calculates von Mises stress, and searches `a` and `b` using a seeded multi-island genetic algorithm. It exports a stress PNG and JSON results.
+
+## Not an original solver reproduction
+
+This is an **independently authored educational model**, not the original Patran/Nastran/Isight implementation. It does not reproduce the original ship structure, submodel displacement transfer, shell geometry, loading cases, mesh convergence or mass constraints. The reported **534 → 424 MPa (20.6%)** result belongs to the original research paper, not this Python example.
+
+The optimizer uses a 2D area proxy for mass. Its fitness includes a penalty and should not be interpreted as a measured stress unless evaluated separately. Three smoke tests check mesh sizes, finite stress values and search bounds; they are not a validation study.
