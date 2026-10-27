@@ -4,6 +4,8 @@
 
 Shanghai Jiao Tong University · Undergraduate Research Plan (PRP), 42nd cohort · **September 2022 – September 2023**
 
+> **Interactive web demo:** [Open Hatch-Corner Optimization Lab](https://choppa129.github.io/Ship-Hatch-Corner-Optimization/) — adjust elliptical corner parameters and view original FEA stress figures. If not live, enable **GitHub Settings → Pages → Deploy from a branch → main /docs**. The browser demo is a geometry visualization and does not calculate FEA stress.
+
 ## Results at a glance
 
 | Metric | Initial | Optimized |
